@@ -2,9 +2,15 @@
   "name": "custom-router",
   "version": "1.0.0",
   "description": "Customizable request router",
-  "main": "src/index.js",
+  "main": "lib/index.js",
+  "type": "module",
   "scripts": {
-    "test": "test"
+    "test": "",
+    "build": "babel src -d lib",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm version patch",
+    "version" : "git add -A src",
+    "postversion" : "git push && git push --tags"
   },
   "repository": {
     "type": "git",
@@ -25,5 +31,11 @@
   "homepage": "https://github.com/joelvh/custom-router#readme",
   "dependencies": {
     "route-parser": "^0.0.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "devolution": "^1.1.2"
   }
 }
