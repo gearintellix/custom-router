@@ -1,0 +1,29 @@
+{
+  "name": "custom-router",
+  "version": "1.0.0",
+  "description": "Customizable request router",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joelvh/custom-router.git"
+  },
+  "keywords": [
+    "node",
+    "http",
+    "request",
+    "router",
+    "path"
+  ],
+  "author": "Joel Van Horn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joelvh/custom-router/issues"
+  },
+  "homepage": "https://github.com/joelvh/custom-router#readme",
+  "dependencies": {
+    "route-parser": "^0.0.5"
+  }
+}
