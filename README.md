@@ -12,12 +12,12 @@ This means you could use Express, Koa or some other web server request such as A
 
 The router can work with any request/response you need.
 
-A typical HTTP server may supply a `request` and `response` like this:
+A typical HTTP server (e.g. Express.js) may supply a `request` and `response` like this:
 
 ```es6
 import router from "custom-router"
 
-// Simply specify the `method` and `path`. You could potentially return the request object directly.
+// Simply return the `method` and `path`. You could potentially return the request object directly if it already has those properties.
 // NOTE: the arguments passed here will also be made available to each route callback (see below)
 const resolver = (req, _res) => {
   return {
@@ -26,6 +26,25 @@ const resolver = (req, _res) => {
     // NOTE: any additional data is passed as part of the `context` argument in your route callback
   }
 }
+```
+
+In an HTTP server where you have a request/response object model, you may need access to the `response` for your route to render a response rather than passing back arbitrary data.
+
+```es6
+const r = router(resolver)
+
+r.get('/path/:param', (params, { method, path, ...data }, req, res) => {
+  // All arguments passed to the resolver are also passed to the route callback.
+  // You can modify the response as needed based on this route.
+  res.body = JSON.stringify({
+    data: 'some data'
+  })
+})
+
+// In a request/response object model, you'd integrate this router at some point when there's
+// a request/response. You can use `handle` to handle any arguments, as long as your resolver knows
+// what to do with them to return `method` and `path`. Then those arguments are also passed to the routes.
+const async (req, res) => r.handle(req, res)
 ```
 
 We'll continue our examples using an AWS Lambda example:
@@ -56,7 +75,8 @@ r.get('/some-path/:param', (params, context, ...request) => {
 
 // `handle` accepts the incoming request like any callback in your server would.
 // AWS Lambda can use this directly to accept the `event`, `context` and `callback` params.
-export r.handle
+// Let's assume we're creating an AWS Lambda handler.
+export const async (event, context) => r.handle(event, context)
 ```
 
 ### Route Path Matchers
