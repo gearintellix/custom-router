@@ -1,6 +1,6 @@
 {
   "name": "custom-router",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Customizable request router",
   "main": "lib/index.js",
   "type": "module",
@@ -9,8 +9,8 @@
     "build": "babel src -d lib",
     "prepare": "npm run build",
     "prepublishOnly": "npm version patch",
-    "version" : "git add -A src",
-    "postversion" : "git push && git push --tags"
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
