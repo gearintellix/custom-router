@@ -1,6 +1,6 @@
 # custom-router
 
-This is a router which does not include an HTTP server. It is meant to handle request data passed to it from any HTTP server you wish. A good example of where routing is not built-in is AWS Lambda, in which case **custom-router** works perfectly as a proxy for an AWS Lambda handler.
+This is a Node.js router which does not include (or require) an HTTP server. It is meant to match request data passed to it from any HTTP server you wish with configured routes and triggers callbacks. A good example of where routing is not built-in is AWS Lambda, in which case **custom-router** works perfectly as a proxy for an AWS Lambda handler.
 
 ## Configuration
 
