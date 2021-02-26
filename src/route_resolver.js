@@ -1,4 +1,5 @@
 import RouteMatcher from 'route-parser'
+import Route from './route'
 
 export default class RouteResolver {
   constructor () {
